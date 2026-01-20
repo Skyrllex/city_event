@@ -36,7 +36,7 @@ class Location(models.Model):
         default=0.0,
         help_text="Долгота должна быть от -180.00000000 до 180.00000000"   
     )
-    
+    #mb go default?
     created_at= models.DateTimeField(
         verbose_name = "Дата создания",
         auto_now_add=True

@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import viewsets, permissions
+from .models import Location
+from .serializers import LocationSerializer
+#from django.shortcuts import render
 
-# Create your views here.
+
+class LocationViewSet(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    premission_classes = [permissions.IsAdminUser]
