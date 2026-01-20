@@ -1,13 +1,18 @@
 pycache/
-    *.pyc
-    *.pyo
-    *.pyd
-    .Python
-    env/
-    venv/
-    .env
-    .venv
-    .vscode/
-    *.sqlite3
-    .DS_Store
-    Thumbs.db
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+env/
+venv/
+.env
+.venv
+
+
+.vscode/
+*.sqlite3
+
+
+.DS_Store
+Thumbs.db

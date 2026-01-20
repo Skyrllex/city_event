@@ -1,3 +1,57 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
+# Create location
+
+class Location(models.Model):
+    # we have long name mb use short name and long adress
+    name = models.CharField(
+        verbose_name = "Название места", 
+        max_length=150, 
+        #need russian regex
+        #validators= [r'^[а-яА-ЯёЁ0-9\s\-\.\,]+$'], 
+    )
+    
+    coordinateX = models.DecimalField(
+        verbose_name = "Широта",
+        max_digits=10,
+        decimal_places=8,
+        validators=[
+            MinValueValidator(-90), 
+            MaxValueValidator(90)
+            ],
+        default=0.0,
+        help_text= "Широта должна быть от -90.00000000 до 90.00000000"
+    )
+
+
+    coordinateY = models.DecimalField(
+        verbose_name = "Долгота",
+        max_digits=11,
+        decimal_places=8,
+        validators=[
+            MinValueValidator(-180), 
+            MaxValueValidator(180)
+            ],
+        default=0.0,
+        help_text="Долгота должна быть от -180.00000000 до 180.00000000"   
+    )
+    
+    created_at= models.DateTimeField(
+        verbose_name = "Дата создания",
+        auto_now_add=True
+        )
+    updates_at= models.DateTimeField(
+        verbose_name = "Дата изменения",
+        auto_now=True
+        )
+
+    class Meta:
+        verbose_name = "локацию"
+        verbose_name_plural = "Локации"
+
+ 
+    def __str__(self):
+        return super().__str__()
+    
+
