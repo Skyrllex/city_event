@@ -16,7 +16,6 @@ class Event(models.Model):
         max_length=500, 
     )
    
-   #loadimage
 
    start_date= models.DateTimeField(
         verbose_name = "Дата начала",
@@ -68,11 +67,11 @@ class Event(models.Model):
         verbose_name_plural = "Мероприятия"
 
    def __str__(self):
-        return super().__str__()
+        return self.name
 
 #easy image test
 class EventImage(models.Model):
-   event  =models.ForeignKey(Event, on_delete=models.CASCADE, 
+   event  = models.ForeignKey(Event, on_delete=models.CASCADE, 
        related_name='images',
        verbose_name = "Мероприятие"
        )
@@ -82,9 +81,14 @@ class EventImage(models.Model):
        verbose_name = "изображения"
        )
    
+  # b_preview= models.BooleanField(
+     #  default= False,
+     #  verbose_name="Главное изображение",
+  # )
+
    class Meta:
-        verbose_name = "Медиа"
-        verbose_name_plural = "Изображения"
+        verbose_name = "медиафайл"
+        verbose_name_plural = "Медиа"
 
    def __str__(self):
-       return f"Изображения для {self.event.name}"
+       return f"Изображения для события: {self.event.name}"

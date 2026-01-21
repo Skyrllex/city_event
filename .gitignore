@@ -9,6 +9,8 @@ venv/
 .env
 .venv
 
+*/migrations/*
+!*/migrations/*__init__.py
 
 .vscode/
 *.sqlite3

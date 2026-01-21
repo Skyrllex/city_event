@@ -8,3 +8,18 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     premission_classes = [permissions.IsAdminUser]
+
+def get_queryset(self):
+    if self.request.user.is_superuser:
+        return Event.objects.all()
+    return Event.objects.filter(status="published")
+
+def get_premissions(self):
+    if self.action in ['create','update','partial_update','destroy']:
+        return [permissions.IsAdminUser()]
+    return [permissions.IIsAuthenticatedOrReadOnly]
+
+def get_serializer_context(self):
+    context=super().get_serializer_context()
+    context['request'] = self.request
+    return context
