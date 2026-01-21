@@ -3,8 +3,6 @@ from .models import Event, EventImage
 
 class EventImageSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
-
-
     class Meta:
         model = EventImage
         fields = ['id', 'image_url']
@@ -21,4 +19,4 @@ class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
-        fields = ['id','name','start_date','end_date','images','status'] 
+        fields = ['id','name','description','start_date','end_date','author','top','pub_date','status','images'] 

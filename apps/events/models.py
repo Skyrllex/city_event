@@ -57,11 +57,11 @@ class Event(models.Model):
       ('archive','архив'),
    ]
    status = models.CharField(
-      max_length=40,
-
-      choices=status_choices,
-      default='draft',
-   )
+       verbose_name = "Статус",
+       max_length=40,
+       choices=status_choices,
+       default='draft',
+       )
    class Meta:
         verbose_name = "мероприятие"
         verbose_name_plural = "Мероприятия"
