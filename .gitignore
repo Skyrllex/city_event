@@ -7,8 +7,10 @@ pycache/
 env/
 venv/
 .env
+.env.*
 .venv
 
+migrations/
 */migrations/*
 !*/migrations/*__init__.py
 
@@ -23,3 +25,4 @@ Thumbs.db
 
 *.jpg
 *.png
+
