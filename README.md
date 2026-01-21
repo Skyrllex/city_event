@@ -1,4 +1,4 @@
-#City Event - Django REST API event platform
+## City Event - Django REST API event platform
 
 ## Implemented
 - Location CRUD
