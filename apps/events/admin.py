@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Event
+from .models import Event, EventImage
+
+
+class EventImageInLine(admin.TabularInline):
+    model = EventImage
+    extra = 1
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
@@ -7,3 +12,11 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ['status','start_date','end_date','top']
     search_fields = ['name', 'description','id_location']
     ordering = ['name','start_date','end_date']
+
+    inlines = [EventImageInLine]
+
+
+@admin.register(EventImage)
+class EventImageAdmin(admin.ModelAdmin):
+    list_display=['event','image']
+    list_filte=['event']

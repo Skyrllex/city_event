@@ -10,7 +10,7 @@ class Event(models.Model):
         #need russian regex
         #validators= [r'^[а-яА-ЯёЁ0-9\s\-\.\,]+$'], 
     )
-   
+
    description = models.CharField(
         verbose_name = "Описание мероприятия", 
         max_length=500, 
@@ -31,9 +31,9 @@ class Event(models.Model):
         verbose_name = "Автор", 
         max_length=50, 
     )
-   #author=models.ForeignKey(Users, on_delete=models.CASCADE)
-   #id_location=models.ForeignKey(Location, on_delete=models.CASCADE),
-   #mb use SET_NULL
+   #author=models.ForeignKey(Users, on_delete=models.SET_NULL)
+   #id_location=models.ForeignKey(Location, on_delete=models.SET_NULL,
+   
 
    top  = models.IntegerField(
         verbose_name = "Рейтинг",
@@ -64,9 +64,27 @@ class Event(models.Model):
       default='draft',
    )
    class Meta:
-        verbose_name = "Мероприятие"
+        verbose_name = "мероприятие"
         verbose_name_plural = "Мероприятия"
 
    def __str__(self):
         return super().__str__()
 
+#easy image test
+class EventImage(models.Model):
+   event  =models.ForeignKey(Event, on_delete=models.CASCADE, 
+       related_name='images',
+       verbose_name = "Мероприятие"
+       )
+   
+   image = models.ImageField(
+       upload_to='events/images/',
+       verbose_name = "изображения"
+       )
+   
+   class Meta:
+        verbose_name = "Медиа"
+        verbose_name_plural = "Изображения"
+
+   def __str__(self):
+       return f"Изображения для {self.event.name}"

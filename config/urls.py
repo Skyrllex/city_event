@@ -22,3 +22,4 @@ urlpatterns = [
     path('api/', include('location.urls')),
     path('api/', include('events.urls')),
 ]
+
