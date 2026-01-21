@@ -20,17 +20,13 @@ class Event(models.Model):
 
    start_date= models.DateTimeField(
         verbose_name = "Дата начала",
-        auto_now=True
     )
    
    end_date= models.DateTimeField(
         verbose_name = "Дата завершения",
     )
    
-   pub_date= models.DateTimeField(
-        verbose_name = "Дата публикации",
-    )
-   
+
    author = models.CharField(
         verbose_name = "Автор", 
         max_length=50, 
@@ -51,11 +47,15 @@ class Event(models.Model):
         help_text="Рейтинг от 0 до 25",
     )
    
+   pub_date= models.DateTimeField(
+        verbose_name = "Дата публикации",
+    )
+   
    status_choices=[
       ('draft','черновик'),
       ('later publication','отложенная публикация'),
       ('publication','опубликовано'),
-      ('publication','архив'),
+      ('archive','архив'),
    ]
    status = models.CharField(
       max_length=40,
@@ -63,7 +63,10 @@ class Event(models.Model):
       choices=status_choices,
       default='draft',
    )
-   
+   class Meta:
+        verbose_name = "Мероприятие"
+        verbose_name_plural = "Мероприятия"
+
    def __str__(self):
         return super().__str__()
 
