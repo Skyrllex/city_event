@@ -31,7 +31,7 @@ class Event(models.Model):
         max_length=50, 
     )
    #author=models.ForeignKey(Users, on_delete=models.SET_NULL)
-   id_location=models.ForeignKey(Location, on_delete=models.SET_NULL)
+   #location=models.ForeignKey( Location,on_delete=models.PROTECT )
    
 
    top  = models.IntegerField(
@@ -83,10 +83,14 @@ class EventImage(models.Model):
        default= False,
        verbose_name="Главное изображение",
     )
+   
 
    class Meta:
         verbose_name = "медиафайл"
         verbose_name_plural = "Медиа"
 
+
    def __str__(self):
        return f"Изображения для события: {self.event.name}"
+
+        
