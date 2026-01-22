@@ -2,11 +2,12 @@
 
 ## Implemented
 - Location CRUD, API
-- Event CRUD, API, Image;
+- Event CRUD, API, Images, locations;
 - Role: admin - all, user - readl only publication;
-- Filter, Search, Sort Events.
+
 ## In process
 - User Interface
+- Filter, Search, Sort Events
 - Sheldure
 - Email notification
 - Weather service
