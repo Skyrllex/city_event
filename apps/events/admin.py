@@ -19,4 +19,4 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(EventImage)
 class EventImageAdmin(admin.ModelAdmin):
     list_display=['event','image']
-    list_filte=['event']
+    list_filter=['event']
