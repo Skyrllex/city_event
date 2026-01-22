@@ -10,7 +10,7 @@ class EventImageInLine(admin.TabularInline):
 class EventAdmin(admin.ModelAdmin):
     list_display = ['name','description','start_date','end_date','top','status']
     list_filter = ['status','start_date','end_date','top']
-    search_fields = ['name', 'description','id_location']
+    search_fields = ['name', 'description']
     ordering = ['name','start_date','end_date']
 
     inlines = [EventImageInLine]
@@ -20,3 +20,5 @@ class EventAdmin(admin.ModelAdmin):
 class EventImageAdmin(admin.ModelAdmin):
     list_display=['event','image']
     list_filter=['event']
+
+    

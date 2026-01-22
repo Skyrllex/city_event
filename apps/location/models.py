@@ -1,15 +1,12 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create location
 
 class Location(models.Model):
     # we have long name mb use short name and long adress
     name = models.CharField(
         verbose_name = "Название места", 
         max_length=150, 
-        #need russian regex
-        #validators= [r'^[а-яА-ЯёЁ0-9\s\-\.\,]+$'], 
     )
     
     coordinateX = models.DecimalField(
@@ -36,7 +33,7 @@ class Location(models.Model):
         default=0.0,
         help_text="Долгота должна быть от -180.00000000 до 180.00000000"   
     )
-    #mb go default?
+   
     created_at= models.DateTimeField(
         verbose_name = "Дата создания",
         auto_now_add=True

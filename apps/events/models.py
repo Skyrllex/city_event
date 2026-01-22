@@ -31,7 +31,11 @@ class Event(models.Model):
         max_length=50, 
     )
    #author=models.ForeignKey(Users, on_delete=models.SET_NULL)
-   #location=models.ForeignKey( Location,on_delete=models.PROTECT )
+   id_location=models.ForeignKey( 
+       Location,
+       on_delete=models.PROTECT,
+       verbose_name = "Локация"
+       )
    
 
    top  = models.IntegerField(
@@ -67,7 +71,7 @@ class Event(models.Model):
    def __str__(self):
         return self.name
 
-#easy image test
+
 class EventImage(models.Model):
    event  = models.ForeignKey(Event, on_delete=models.CASCADE, 
        related_name='images',
