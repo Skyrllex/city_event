@@ -36,8 +36,6 @@ class Event(models.Model):
 
    top  = models.IntegerField(
         verbose_name = "Рейтинг",
-        #max_digits=2,
-        #decimal_places=0,
         validators=[
             MinValueValidator(0), 
             MaxValueValidator(25)
@@ -51,10 +49,10 @@ class Event(models.Model):
     )
    
    status_choices=[
-      ('draft','черновик'),
-      ('later publication','отложенная публикация'),
-      ('publication','опубликовано'),
-      ('archive','архив'),
+      ('draft','Черновик'),
+      ('later publication','Отложенная публикация'),
+      ('publication','Опубликовано'),
+      ('archive','Архив'),
    ]
    status = models.CharField(
        verbose_name = "Статус",
@@ -81,10 +79,10 @@ class EventImage(models.Model):
        verbose_name = "изображения"
        )
    
-  # b_preview= models.BooleanField(
-     #  default= False,
-     #  verbose_name="Главное изображение",
-  # )
+   b_preview= models.BooleanField(
+       default= False,
+       verbose_name="Главное изображение",
+    )
 
    class Meta:
         verbose_name = "медиафайл"
