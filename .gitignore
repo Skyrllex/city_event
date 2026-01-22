@@ -14,6 +14,7 @@ pycache/
 *.so
 .Python
 build/
+images/
 develop-eggs/
 dist/
 downloads/
