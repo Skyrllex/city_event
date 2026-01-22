@@ -1,8 +1,8 @@
 # City Event - Django REST API event platform
 
 ## Implemented
-- Location CRUD
-- Event CRUD and Image;
+- Location CRUD, API
+- Event CRUD, API, Image;
 - Role: admin - all, user - readl only publication;
 - Filter, Search, Sort Events.
 ## In process
@@ -26,21 +26,22 @@ tzdata==2025.3
 ```
 
 ## RUN
->  bash
+###  Use this cod in bash
 ```
 git clone <https://github.com/Skyrllex/city_event>
 cd city-event
 python -m venv venv
 ```
-### Windows: 
+### Start venv:
+> Windows
 ```
 venv\Scripts\activate 
 ```
-### Linux : 
+> Linux : 
 ```
 source venv/bin/activate  
 ```
-### install
+### install requirements
 ```
 pip install -r requirements.txt
 python manage.py migrate

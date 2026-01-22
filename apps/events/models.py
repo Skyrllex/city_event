@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-#from apps.location.models import Location
+from location.models import Location
 #from apps.users.models import Users
 
 class Event(models.Model):
@@ -31,7 +31,7 @@ class Event(models.Model):
         max_length=50, 
     )
    #author=models.ForeignKey(Users, on_delete=models.SET_NULL)
-   #id_location=models.ForeignKey(Location, on_delete=models.SET_NULL,
+   id_location=models.ForeignKey(Location, on_delete=models.SET_NULL)
    
 
    top  = models.IntegerField(
