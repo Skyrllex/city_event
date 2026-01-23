@@ -33,11 +33,28 @@ class EventAuthorSerializer(serializers.ModelSerializer):
     def get_full_name(self, obj):
         full_name = (obj.first_name + " "+ obj.last_name).strip() 
         return full_name if full_name else obj.username
-
+    
 class EventSerializer(serializers.ModelSerializer):
     images = EventImageSerializer(many=True, read_only=True)
     id_location= EventLocationSerializer(many=False, read_only=True)
     author = EventAuthorSerializer(many=False, read_only=True)
+
+    id_location_info= EventLocationSerializer(source="id_location", read_only=True)
+    author_info = EventAuthorSerializer(source="author", read_only=True)
+
+    id_location_info = serializers.PrimaryKeyRelatedField(
+        queryset=Location.objects.all(),
+        write_only=True,
+        source="id_location"
+    )
+
+    author_info = serializers.PrimaryKeyRelatedField(
+       queryset=User.objects.all(),
+        write_only=True,
+        source="author",
+        required=False
+    )  
+    
     class Meta:
         model = Event
-        fields = ['id','name','description','start_date','end_date','author','top','pub_date','status','images','id_location'] 
+        fields = ['id','name','description','start_date','end_date','author','author_info','top','pub_date','status','images','id_location','id_location_info'] 
