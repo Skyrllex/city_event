@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from location.models import Location
 
 class LocationTestCase(TestCase):
-    print('Test 1: Create object Location.')
+    print('Test 1 Location : Create object.')
     def setUp(self):
         self.user = User.objects.create_superuser(
             username="testadmin",
@@ -21,6 +21,6 @@ class LocationTestCase(TestCase):
         self.assertEqual(str(self.location.name), 'Красная площадь')
         self.assertEqual(str(self.location.coordinateX), '56.008733')
         self.assertEqual(str(self.location.coordinateY), '92.83873')
-        print('COMPLITED! TEST 1: Create object Location.')
+        print('COMPLITED! TEST 1 Location: Create object.')
             
 

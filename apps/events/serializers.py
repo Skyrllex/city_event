@@ -45,14 +45,16 @@ class EventSerializer(serializers.ModelSerializer):
     id_location_info = serializers.PrimaryKeyRelatedField(
         queryset=Location.objects.all(),
         write_only=True,
-        source="id_location"
+        source="id_location",
+        label = "Локация"
     )
 
     author_info = serializers.PrimaryKeyRelatedField(
        queryset=User.objects.all(),
         write_only=True,
         source="author",
-        required=False
+        required=False,
+        label = "Автор"
     )  
     
     class Meta:

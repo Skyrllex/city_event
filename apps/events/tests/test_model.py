@@ -6,7 +6,9 @@ from datetime import datetime
 from django.utils import timezone
 
 
+
 class EventTestCase(TestCase):
+    print('Events Test 1 : Create object Events')
     def setUp(self):
         self.user = User.objects.create_superuser(
             username="testadmin",
@@ -35,5 +37,5 @@ class EventTestCase(TestCase):
         self.assertEqual(str(self.events.name), 'Фестиваль фонарей')
         self.assertEqual(str(self.events.author.username), 'testadmin')
         self.assertEqual(str(self.events.id_location.name), 'Центральная набережная')
-        print('Мероприятие создалось успешно')
+        print('COMPLITED! Events Test 1 : Create object')
             
