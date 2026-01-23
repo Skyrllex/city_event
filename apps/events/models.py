@@ -93,8 +93,6 @@ class EventImage(models.Model):
        default= False,
        verbose_name="Главное изображение",
     )
-
-
        
    class Meta:
         verbose_name = "медиафайл"
@@ -105,24 +103,25 @@ class EventImage(models.Model):
        return f"Изображения для события: {self.event.name}"
    
    def save(self, *args, **kwargs):
-       
        super().save(*args, **kwargs)
        if self.b_preview:
         EventImage.objects.filter(
             event=self.event,
             b_preview = True
             ).exclude(pk=self.pk).update(b_preview=False)
-        self.image_preview
-   
+        
+        self.image = self.image_preview
+
    def image_preview(self):
         img = Image.open(self.image.path)
+        px=200
         weight, height= img.size
         if weight<height:
-            preview_height = 200
-            preview_weight = int ((weight/height)*200)
+            preview_height = px
+            preview_weight = int ((weight/height)*px)
         else:
-            preview_height = int ((height/weight)*200)
-            preview_weight = 200
+            preview_height = int ((height/weight)*px)
+            preview_weight = px
         img= img.resize((preview_weight,preview_height))
 
         img_bytes = BytesIO()
@@ -130,8 +129,6 @@ class EventImage(models.Model):
 
         image_content_file = ContentFile(content=img_bytes.getvalue())
         name = self.image.name.split('.')[0] + '.WEBP'
-
-        new_image = File(image_content_file, name=name)
-        return new_image
+        return File(image_content_file, name=name)
        
         
