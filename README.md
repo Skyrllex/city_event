@@ -1,9 +1,11 @@
 # City Event - Django REST API event platform
 
 ## Implemented
-- Location CRUD, API
-- Event CRUD, API, Images, locations;
-- Role: admin - all, user - readl only publication;
+- DRF (Django REST Framework)
+- CRUD (Create, Read, Update, Delete)
+- Pagination
+- Pillow 
+- Tests
 
 ## In process
 - User Interface
@@ -48,10 +50,14 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 ```
+## USE TEST
+python manage.py test apps
+
 ### Run project
 ```
 python manage.py runserver
 ```
+
 
 ## SECRET_KEY 
 > Create in main folder SECRET_KEY.env and PUSH KEY
