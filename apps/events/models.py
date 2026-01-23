@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from location.models import Location
-#from apps.users.models import Users
+from django.contrib.auth.models import User
+#from users.models import Users
 
 class Event(models.Model):
    name = models.CharField(
@@ -26,11 +27,12 @@ class Event(models.Model):
     )
    
 
-   author = models.CharField(
-        verbose_name = "Автор", 
-        max_length=50, 
+   author=models.ForeignKey( 
+       User,
+       on_delete=models.PROTECT,
+       verbose_name = "Автор",
     )
-   #author=models.ForeignKey(Users, on_delete=models.SET_NULL)
+
    id_location=models.ForeignKey( 
        Location,
        on_delete=models.PROTECT,

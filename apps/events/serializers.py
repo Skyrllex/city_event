@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Event, EventImage
-from .models import Location
+from location.models import Location
+from django.contrib.auth.models import User
 
 class EventImageSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
@@ -24,12 +25,19 @@ class EventLocationSerializer(serializers.ModelSerializer):
         model = Location
         fields = ['id','name','coordinateX','coordinateY']
 
-    
+class EventAuthorSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = ['id','username','full_name']
+    def get_full_name(self, obj):
+        full_name = (obj.first_name + " "+ obj.last_name).strip() 
+        return full_name if full_name else obj.username
 
 class EventSerializer(serializers.ModelSerializer):
     images = EventImageSerializer(many=True, read_only=True)
     id_location= EventLocationSerializer(many=False, read_only=True)
-    
+    author = EventAuthorSerializer(many=False, read_only=True)
     class Meta:
         model = Event
         fields = ['id','name','description','start_date','end_date','author','top','pub_date','status','images','id_location'] 
