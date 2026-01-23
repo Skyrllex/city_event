@@ -2,6 +2,10 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from location.models import Location
 from django.contrib.auth.models import User
+from io import BytesIO
+from PIL import Image
+from django.core.files import File
+from django.core.files.base import ContentFile
 #from users.models import Users
 
 class Event(models.Model):
@@ -89,8 +93,9 @@ class EventImage(models.Model):
        default= False,
        verbose_name="Главное изображение",
     )
-   
 
+
+       
    class Meta:
         verbose_name = "медиафайл"
         verbose_name_plural = "Медиа"
@@ -98,5 +103,35 @@ class EventImage(models.Model):
 
    def __str__(self):
        return f"Изображения для события: {self.event.name}"
+   
+   def save(self, *args, **kwargs):
+       
+       super().save(*args, **kwargs)
+       if self.b_preview:
+        EventImage.objects.filter(
+            event=self.event,
+            b_preview = True
+            ).exclude(pk=self.pk).update(b_preview=False)
+        self.image_preview
+   
+   def image_preview(self):
+        img = Image.open(self.image.path)
+        weight, height= img.size
+        if weight<height:
+            preview_height = 200
+            preview_weight = int ((weight/height)*200)
+        else:
+            preview_height = int ((height/weight)*200)
+            preview_weight = 200
+        img= img.resize((preview_weight,preview_height))
 
+        img_bytes = BytesIO()
+        img.save(fp=img_bytes, format="WEBP", quality=100)
+
+        image_content_file = ContentFile(content=img_bytes.getvalue())
+        name = self.image.name.split('.')[0] + '.WEBP'
+
+        new_image = File(image_content_file, name=name)
+        return new_image
+       
         
