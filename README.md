@@ -50,9 +50,10 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 ```
-## USE TEST
+### USE TEST
+```
 python manage.py test apps
-
+```
 ### Run project
 ```
 python manage.py runserver
