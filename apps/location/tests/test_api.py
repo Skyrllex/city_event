@@ -11,17 +11,16 @@ class LocationTestCaseWithApi(APITestCase):
             username="testadmin2",
             password="admin1234"
         )
+        self.client=APIClient()
+        self.client.force_authenticate(user=self.user)
     
-    def locaiotn_create_api(self):
+    def test_locaiotn_create_api(self):
         data = {
-            'name': "Центральный парк",
+            'name': 'Центральный парк',
             'coordinateX' : '56.009498', 
             'coordinateY' : '92.852488'
         }
-        print('Ruin there')
-        self.client=APIClient()
-        self.client.force_authenticate(user=self.user)
-        response = self.client.post('api/location', data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        print('COMPLITED! API Location TEST 2: Create object.')
 
+        response = self.client.post('/api/location/', data, format='json')
+        self.assertEqual (response.status_code, status.HTTP_201_CREATED)
+        print('COMPLITED! API Location TEST 2: Create object.')

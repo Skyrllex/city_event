@@ -6,7 +6,6 @@ from datetime import datetime
 from django.utils import timezone
 
 
-
 class EventTestCase(TestCase):
     print('Events Test 1 : Create object Events')
     def setUp(self):
@@ -14,7 +13,6 @@ class EventTestCase(TestCase):
             username="testadmin",
             password="admin123"
         )
-
 
         self.location =Location.objects.create(
             name = "Центральная набережная",
