@@ -9,14 +9,17 @@
 - Search, Sort Events
 - User Interface
 - Swagger
+- Docker deployment
 
 ## In process
 - Filter 
 - Sheldure
 - Email notification
 - Weather service
-- API Documentatiom
-- Docker deployment
+- export/import 
+- Documentation ERD
+
+
 
 
 ## requirements
