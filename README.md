@@ -31,11 +31,12 @@ tzdata==2025.3
 ## RUN
 ###  Use this cod in bash
 ```
-git clone <https://github.com/Skyrllex/city_event>
-cd city-event
+git clone https://github.com/Skyrllex/city_event
+cd city_event
 python -m venv venv
 ```
 ### Start venv:
+
 > Windows
 ```
 venv\Scripts\activate 
@@ -46,9 +47,12 @@ source venv/bin/activate
 ```
 ### install requirements
 ```
+pip install --upgrate pip
 pip install -r requirements.txt
+python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
+
 ```
 ### USE TEST
 ```
