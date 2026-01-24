@@ -8,6 +8,7 @@
 - Tests
 - Search, Sort Events
 - User Interface
+- Swagger
 
 ## In process
 - Filter 
@@ -27,11 +28,12 @@ djangorestframework==3.16.1
 pillow==12.1.0
 sqlparse==0.5.5
 tzdata==2025.3
+drf-spectacular==25.1.1
 ```
 
 ## RUN
-###  Use this cod in bash
-```
+###  Clone project
+```bash
 git clone https://github.com/Skyrllex/city_event
 cd city_event
 python -m venv venv
@@ -64,6 +66,15 @@ python manage.py test apps
 python manage.py runserver
 ```
 
+## Docker
+> If u install docker
+```bash
+docker-compose build
+docker-compose up
+```
+
+### Key generation
+### Method 1. Django
 
 ## SECRET_KEY 
 > Create in main folder SECRET_KEY.env and PUSH KEY
