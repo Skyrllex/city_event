@@ -4,10 +4,11 @@ from location.models import Location
 from django.contrib.auth.models import User
 
 class EventImageSerializer(serializers.ModelSerializer):
+    prev_url = serializers.SerializerMethodField()
     image_url = serializers.SerializerMethodField()
     class Meta:
         model = EventImage
-        fields = ['id', 'image_url','b_preview']
+        fields = ['id', 'image_url','b_preview','prev_url']
 
     def get_image_url(self,obj):
         if obj.image:
@@ -19,6 +20,13 @@ class EventImageSerializer(serializers.ModelSerializer):
             request = self.context.get('request')
             return request.build_absolute_uri(obj.b_preview) if request else obj.b_preview
         return None
+
+    def get_prev_url(self,obj):
+        if obj.image and obj.b_preview:
+            p_url= obj.image.url.split('.')[0] +'.WEBP'
+            request = self.context.get('request')
+            return request.build_absolute_uri(p_url) if request else p_url
+        return None        
 
 class EventLocationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,6 +47,7 @@ class EventSerializer(serializers.ModelSerializer):
     id_location= EventLocationSerializer(many=False, read_only=True)
     author = EventAuthorSerializer(many=False, read_only=True)
 
+
     id_location_info= EventLocationSerializer(source="id_location", read_only=True)
     author_info = EventAuthorSerializer(source="author", read_only=True)
 
@@ -57,6 +66,7 @@ class EventSerializer(serializers.ModelSerializer):
         label = "Автор"
     )  
     
+
     class Meta:
         model = Event
         fields = ['id','name','description','start_date','end_date','author','author_info','top','pub_date','status','images','id_location','id_location_info'] 

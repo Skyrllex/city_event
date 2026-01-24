@@ -6,14 +6,13 @@ from io import BytesIO
 from PIL import Image
 from django.core.files import File
 from django.core.files.base import ContentFile
+import os
 #from users.models import Users
 
 class Event(models.Model):
    name = models.CharField(
         verbose_name = "Название мероприятия", 
         max_length=70, 
-        #need russian regex
-        #validators= [r'^[а-яА-ЯёЁ0-9\s\-\.\,]+$'], 
     )
 
    description = models.CharField(
@@ -85,7 +84,7 @@ class EventImage(models.Model):
        )
    
    image = models.ImageField(
-       upload_to='events/images/',
+       upload_to='media/events/images/',
        verbose_name = "изображения"
        )
    
@@ -109,8 +108,7 @@ class EventImage(models.Model):
             event=self.event,
             b_preview = True
             ).exclude(pk=self.pk).update(b_preview=False)
-        
-        self.image = self.image_preview
+        self.image_preview()
 
    def image_preview(self):
         img = Image.open(self.image.path)
@@ -125,10 +123,13 @@ class EventImage(models.Model):
         img= img.resize((preview_weight,preview_height))
 
         img_bytes = BytesIO()
-        img.save(fp=img_bytes, format="WEBP", quality=100)
+        img.save(img_bytes, format="WEBP", quality=100)
+        img_bytes.seek(0)
 
-        image_content_file = ContentFile(content=img_bytes.getvalue())
-        name = self.image.name.split('.')[0] + '.WEBP'
-        return File(image_content_file, name=name)
-       
+
+        full_path =self.image.name.split('.')[0] +'.WEBP'
+
+        with open(full_path,'wb') as f:
+            f.write(img_bytes.getvalue())
+
         
