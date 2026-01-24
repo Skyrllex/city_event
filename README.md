@@ -7,9 +7,9 @@
 - Pillow 
 - Tests
 - Search, Sort Events
+- User Interface
 
 ## In process
-- User Interface
 - Filter 
 - Sheldure
 - Email notification
@@ -70,7 +70,7 @@ python manage.py runserver
 ### Key generation
 ### Method 1. Django
 ```
-venv/Scripts/Activate
+venv\Scripts\activate
 python manage.py shell -c "from django.core.> management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
 ### Method 2. Python

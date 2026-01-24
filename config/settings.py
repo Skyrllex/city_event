@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #conf
     'rest_framework',
+    'drf_spectacular',
     #models
 
     'location',
@@ -54,6 +55,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'PAGE_SIZE': 10,
 }
 
@@ -116,6 +118,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SPECTACULAR_SETTINGS = {
+    "TITLE": "City Events API",
+    "DESCRIPTION": 'API Event Platform. Navigation admin: /admin/. User interface: /events/list',
+    'CONTACT':{
+        'name' : 'Skyrllex',
+        'url' : 'https://github.com/Skyrllex/city_event/'
+    },
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False, 
+    'SWAGGER_UI_SETTINGS': {
+        "filter": True,
+        'deepLinking': True,
+        'displayRequestDuration': True,
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
