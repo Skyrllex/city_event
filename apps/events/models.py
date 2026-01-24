@@ -96,10 +96,17 @@ class EventImage(models.Model):
    class Meta:
         verbose_name = "медиафайл"
         verbose_name_plural = "Медиа"
-
-
+    
+     
+        
    def __str__(self):
        return f"Изображения для события: {self.event.name}"
+   
+   @property
+   def prev_url(self):
+        if self.image and self.b_preview:
+            return self.image.url.split('.')[0] +'.WEBP'
+   
    
    def save(self, *args, **kwargs):
        super().save(*args, **kwargs)
@@ -131,5 +138,4 @@ class EventImage(models.Model):
 
         with open(full_path,'wb') as f:
             f.write(img_bytes.getvalue())
-
-        
+    

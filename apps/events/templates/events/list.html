@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head><tittle>Платформа проведения мероприятий</title></head>
+    <body>
+        <h1>Всего мероприятий: {{ events.count }} </h1>
+        <ul>
+        {% for event in events %}
+        <li>
+            <h2>Название<strong> {{ event.name }}</strong></h2>
+            <p>Описание<strong> {{ event.description }} </strong></p>
+            <p>Дата начала<strong> {{ event.start_date }} </strong></p>
+            <p>Дата окончания<strong> {{ event.end_date }} </strong></p>
+            <p>Место проведения<strong> {{ event.id_location.name }} </strong></p>
+            <p>Статус<strong> {{ event.status }} </strong></p>
+            <p>Рейтинг<strong> {{ event.top }} </strong></p>
+            {% if event.author.full_name %}
+                <p>Автор<strong> {{ event.author.full_name }},{{ event.author.username }} </strong></p>
+            {% else %}
+               <p>Автор<strong> {{ event.author.username }} </strong></p>
+            {% endif %}
+            <p>Дата публикации<strong> {{ event.pub_date }} </strong></p>
+            
+
+            {% for image in event.images.all%}
+                {% if image.b_preview%}
+                    <img src= "{{image.prev_url}}" alt="Изображение {{event.name}}">
+                {% endif %}
+            {% endfor %}
+        </li>
+        {% empty %}
+        {% endfor %}
+        </ul>
+    </body> 
+</html>

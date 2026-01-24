@@ -6,10 +6,11 @@
 - Pagination
 - Pillow 
 - Tests
+- Search, Sort Events
 
 ## In process
 - User Interface
-- Filter, Search, Sort Events
+- Filter 
 - Sheldure
 - Email notification
 - Weather service
