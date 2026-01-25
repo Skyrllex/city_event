@@ -109,8 +109,9 @@ class EventImage(models.Model):
    
    
    def save(self, *args, **kwargs):
-       super().save(*args, **kwargs)
-       if self.b_preview:
+    super().save(*args, **kwargs)
+
+    if self.b_preview:
         EventImage.objects.filter(
             event=self.event,
             b_preview = True

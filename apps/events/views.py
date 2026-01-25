@@ -1,9 +1,11 @@
 from rest_framework import viewsets, permissions
-from .models import Event
+from .models import Event,Location
 from .serializers import EventSerializer
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from .filters import EventFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from django.core.paginator import Paginator
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
@@ -33,4 +35,26 @@ def event_list(request):
         events = Event.objects.all()
     else:
         events = Event.objects.filter(status = "publication")
-    return render(request,'events/list.html', {'events': events})
+
+    event_filter = EventFilter(request.GET, queryset=events)
+    events_set= event_filter.qs
+
+    paginator = Paginator (events_set,6)
+    page_number=request.GET.get('page',1)
+    page_obj = paginator.get_page(page_number)
+
+    return render(request,'events/list.html', {
+        'events': page_obj,
+        'filter': event_filter,
+        'page_obj': page_obj,
+        })
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_Class=EventFilter
+
+   #search_fields = ['name','id_location__name']
+    #ordering_fileds = ['name','start_date','end_date']
+    #ordering=['-start_date']

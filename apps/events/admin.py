@@ -7,11 +7,12 @@ class EventImageInLine(admin.TabularInline):
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['name','description','start_date','end_date','top','status']
-    
+    list_display = ['name','id_location__name','start_date','end_date','top','status','author','pub_date']
     list_filter = ['status','start_date','end_date','top']
-    search_fields = ['name', 'description']
-    ordering = ['name','start_date','end_date']
+    search_fields = ['name','id_location__name']
+
+    #ordering = ['name','start_date','end_date']
+    ordering=['-pub_date']
     readonly_fields=['author']
     inlines = [EventImageInLine]
     def save_model(self, request, obj, form, change):
@@ -24,4 +25,3 @@ class EventImageAdmin(admin.ModelAdmin):
     list_display=['event','image']
     list_filter=['event']
 
-    
