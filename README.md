@@ -8,9 +8,9 @@
 - Search by name and venue
 - REST API with Swagger documentation
 - Docker containerization
+- Weather module
 
 ## Extensible Architecture:
-- Modular structure ready for weather integration
 - Models prepared for Celery tasks
 - Import/export system (basic framework)
 
