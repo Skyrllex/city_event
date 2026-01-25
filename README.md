@@ -1,26 +1,18 @@
 # City Event - Django REST API event platform
 
-## Implemented
-- DRF (Django REST Framework)
-- CRUD (Create, Read, Update, Delete)
-- Pagination
-- Pillow 
-- Tests
-- Search, Sort Events
-- User Interface
-- Swagger
-- Docker deployment
+## Implemented Functionality
+- Full CRUD for events and venues
+- Image system with automatic preview generation (200px WebP)
+- Access rights management (superuser/regular users)
+- Pagination, sorting, and filtering of events
+- Search by name and venue
+- REST API with Swagger documentation
+- Docker containerization
 
-## In process
-- Filter 
-- Sheldure
-- Email notification
-- Weather service
-- export/import 
-- Documentation ERD
-
-
-
+## Extensible Architecture:
+- Modular structure ready for weather integration
+- Models prepared for Celery tasks
+- Import/export system (basic framework)
 
 ## requirements
 ```
@@ -68,7 +60,10 @@ python manage.py test apps
 ```
 python manage.py runserver
 ```
-
+>Open pages in browser
+```
+http://127.0.0.1:8000/events/list
+```
 ## Docker
 > If u install docker
 ```bash

@@ -8,7 +8,7 @@
         .one h2 {  font-family: 'Righteous', cursive; position: relative;color: #3CA1D9;  display: inline-block;border-top: 2px solid; border-bottom: 2px solid; font-size: 3em; padding: 11px 60px; margin: 0;  line-height: 1;}
         .one3 h3 {  font-family: 'Righteous', cursive; text-align: center;color: #1f5c7e; border-top: 2px solid; border-bottom: 2px solid; font-size: 1em; padding: 11px 60px; margin: 0;  line-height: 1;}
         .one { background: #FFF4ED; padding: 50px 20px; text-align: center;}
-        .one3 { background: #FFF4ED;  font-family: 'Righteous', cursive; trandiron:transform 0.3s; height:99%; position: relative;color: #213e50; border: 5px solid; font-size: 1em; padding: 15px 60px; margin: 10px;  line-height: 1;}
+        .one3 { background: #FFF4ED;  font-family: 'Righteous', cursive; trandiron:transform 0.3s; height:99%; position: relative;color: #1f5c7e;  border: 5px solid; font-size: 1em; padding: 15px 60px; margin: 10px;  line-height: 1;}
         .one { background: #FFF4ED; padding: 50px 20px; text-align: center;}
         .one4 { background: #FFF4ED; padding: 10px 10px; text-align: center;  text-align: center; verticale-align: middle; line-height: normal; height: 200px;}
         .one h1:before, .one h1:after { content: "";  position: absolute; top: 0; width: 30px; height: 100%; border-left: 2px solid; border-right: 2px solid; background: repeating-linear-gradient(180deg, transparent, transparent 2px, #3CA1D9 2px, #3CA1D9 4px);} .one h1:before {left: 0;}
@@ -20,9 +20,24 @@
         .pagination .current { padding: 5px 10px;font-weight: bold;}
 </style>
     </style>
+    <div class="onebar"> 
+        <a href="/">🏠Главная</a>
+        <a href="/events/list">📅 Все мероприятия</a>
+        <a href="/admin/">⚙️ Админка</a>
+        <a href="/api/events/">📖 API мероприятий</a>
+        <a href="/api/location/">📖API Локаций</a>
+        <a href="/api/docs/">📊 API Документация</a>
+        <a href="/api/schema/">📑 Загрузить Schema</a>
+        {% if user.is_authenticated %}
+        <a href="/events/hello">🖐️ Hello! </a>
+        <span>👤 {{ user.username }}</span>
+        <a href="/admin/">🚪 Выйти</a>
+        {% else %}
+        <a href="/admin/">🔑 Войти</a>
+        {% endif %}  
+    </div>
     <head><div class ="one"><tittle><h1>Платформа проведения мероприятий</h1></title></div></head>
     <body>
-   
         <div class="one"> <h2>Cписок мероприятий: </h2></div>
             <div class="onebar"> 
                 <form method="get"> 
