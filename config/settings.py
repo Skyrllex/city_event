@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'location',
     'events',
+    'django_extensions',
 
 ]
 
