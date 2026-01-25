@@ -1,9 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-
 class Location(models.Model):
-    # we have long name mb use short name and long adress
     name = models.CharField(
         verbose_name = "Название места", 
         max_length=150, 
@@ -47,7 +45,15 @@ class Location(models.Model):
         verbose_name = "локацию"
         verbose_name_plural = "Локации"
 
- 
+    @property
+    def get_weather_loc(self):
+        from weather.services import WeatherService
+        return WeatherService.up_weather(self.name)
+    
+    @property
+    def weather(self):
+        return self.get_weather_loc()
+    
     def __str__(self):
         return self.name
     

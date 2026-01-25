@@ -28,6 +28,7 @@
         <a href="/api/location/">📖API Локаций</a>
         <a href="/api/docs/">📊 API Документация</a>
         <a href="/api/schema/">📑 Загрузить Schema</a>
+
         {% if user.is_authenticated %}
         <a href="/events/hello">🖐️ Hello! </a>
         <span>👤 {{ user.username }}</span>
@@ -76,7 +77,8 @@
                             {% endfor %}
                             </strong> </p>
                             <p> <strong> {{ event.description }} </strong></p>
-                            <p> C: <strong> {{ event.start_date }} по {{ event.end_date }} </strong></p>
+                            <p> C: <strong> {{ event.start_date }}  </strong></p>
+                            <p> по <strong> {{ event.end_date }} </strong></p>
                             <p>Место проведения: <strong> {{ event.id_location.name }} </strong></p>
                             {% if event.status == 'draft' %}
                                  <p style = "color: gray">Статус: <strong> {{ event.get_status_display }} </strong></p>
@@ -94,6 +96,23 @@
                             <p>Автор: <strong> {{ event.author.username }} </strong></p>
                             {% endif %}
                             <p>Дата публикации:<strong> {{ event.pub_date }} </strong></p>
+
+                                <div class="event-card">
+                                    {% if event.id_location %}
+                                    <h3>{{ event.id_location.name }}</h3>
+                                        {% with weather=event.id_location.get_weather_loc %}
+                                            {% if weather %}
+                                                <div class="weather">
+                                                    <small> {% if weather %} {% if weather.temperature < 0 %} ❄️  {% elif weather.temperature < 15 %}  🌤️   {% elif weather.temperature < 25 %} ☀️   {% else %}🔥  {% endif %} {{ weather.temperature }} °C </small>
+                                                    <small> {{ weather.wind_direction }}  {% if weather.wind_speed < 5 %}🍃 {{ weather.wind_speed }}  {% elif weather.wind_speed < 15 %}  💨 {{ weather.wind_speed }}  {% else %} 🌪️ {{ weather.wind_speed }}  {% endif %}  м/с   {% endif %} </small> 
+                                                    <small> {% if weather.pressure < 740 %} 📉 {% elif weather.pressure > 770 %} 📈  {% else %}📊  {% endif %} {{ weather.pressure }} mmHg </small>
+                                                    <small> {% if weather.humidity < 40 %}  🏜️ {% elif weather.humidity > 80 %} 🌧️ {% else %} 💧  {% endif %} {{ weather.humidity }} %</small>
+                                                </div>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endif %}
+                                </div>
+
                         </div>
                     </div>    
                 {% empty %}

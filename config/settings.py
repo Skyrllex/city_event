@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'location',
     'events',
+    'weather',
    #'django_extensions',
 
 ]
