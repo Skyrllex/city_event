@@ -103,7 +103,7 @@
                                             {% if weather %}
                                                 <div class="weather">
                                                     <small> {% if weather %} {% if weather.temperature < 0 %} ❄️  {% elif weather.temperature < 15 %}  🌤️   {% elif weather.temperature < 25 %} ☀️   {% else %}🔥  {% endif %} {{ weather.temperature }} °C </small>
-                                                    <small> {{ weather.wind_direction }}  {% if weather.wind_speed < 5 %}🍃 {{ weather.wind_speed }}  {% elif weather.wind_speed < 15 %}  💨 {{ weather.wind_speed }}  {% else %} 🌪️ {{ weather.wind_speed }}  {% endif %}  м/с   {% endif %} </small> 
+                                                    <small>  {% if weather.wind_speed < 5 %}🍃   {% elif weather.wind_speed < 15 %}  💨  {% else %} 🌪️   {% endif %} {{ weather.wind_direction }} {{ weather.wind_speed }}  м/с   {% endif %} </small> 
                                                     <small> {% if weather.pressure < 740 %} 📉 {% elif weather.pressure > 770 %} 📈  {% else %}📊  {% endif %} {{ weather.pressure }} mmHg </small>
                                                     <small> {% if weather.humidity < 40 %}  🏜️ {% elif weather.humidity > 80 %} 🌧️ {% else %} 💧  {% endif %} {{ weather.humidity }} %</small>
                                                 </div>
@@ -121,7 +121,7 @@
                         Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
                     </span>
                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">Назад</a>
+                        <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
                     {% else %}
                         <span class="disabled"></span>
                     {% endif %}
@@ -133,7 +133,7 @@
                         {% endif %}
                     {% endfor %}
                     {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}">Вперед</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
                     {% else %}
                         <span class="disabled"></span>
                     {% endif %}
