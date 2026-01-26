@@ -88,6 +88,7 @@ docker-compose up
 
 ## SECRET_KEY 
 > Create in main folder SECRET_KEY.env and PUSH KEY
+
 ### Key generation
 ### Method 1. Django
 ```
