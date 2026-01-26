@@ -16,7 +16,7 @@ class WeatherService:
         else: 
             first_lett = stroke[:3]
         weather_key= str(ascii_sum * length)+"_"+first_lett
-        return weather_key
+        return weather_key[:100]
     @staticmethod
     def generate_weather(weather_id):
         if not weather_id:
