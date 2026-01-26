@@ -24,8 +24,9 @@ pillow==12.1.0
 sqlparse==0.5.5
 tzdata==2025.3
 pytest==9.0.2
-pytest-django = 4.11.1
-pytest-cov = 7.0.0
+pytest-django == 4.11.1
+pytest-cov == 7.0.0
+load_dotenv == 0.1.0
 ```
 
 ## RUN
