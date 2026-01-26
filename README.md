@@ -55,8 +55,18 @@ python manage.py createsuperuser
 
 ```
 ### USE TEST
+You can run cmd
 ```
 python manage.py test apps
+```
+or run pytest
+```bash
+pytest --tb=short
+```
+Run with coverage measurement
+```bash
+pytest --cov=apps --cov-report=term-missing
+pytest --cov=apps --cov-report=html
 ```
 ### Run project
 ```
